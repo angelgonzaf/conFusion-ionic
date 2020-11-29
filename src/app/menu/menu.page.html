@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,6 +8,22 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+
+<ion-content class="card-background-page">
+  <div *ngIf="dishes">
+    <ion-card *ngFor="let dish of dishes" routerDirection="forward" [routerLink]="['/dishdetail', dish.id]">
+      <ion-img src="{{BaseURL + dish.image}}"></ion-img>
+      <div class="card-title">{{ dish.name }}</div>
+      <div class="card-subtitle">{{ dish.description }}</div>
+    </ion-card>
+  </div>
+  <div [hidden]="dishes || dishErrMess">
+    <ion-spinner></ion-spinner>
+    <h4>Loading... Please Wait</h4>
+  </div>
+  <div *ngIf="dishErrMess">
+    <h2>Error</h2>
+    <h4>{{ dishErrMess }}</h4>
+  </div>
 
 </ion-content>

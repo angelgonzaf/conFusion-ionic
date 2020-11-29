@@ -2,6 +2,16 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+ion-menu {
+  --ion-background-color: var(--ion-color-primary-pale);
+
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+  }
+  ion-list {
+    --background: var(--ion-color-primary);
+  }
+}
 :root {
   /** primary **/
   --ion-color-primary: #673AB7;
