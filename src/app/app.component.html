@@ -12,6 +12,13 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false" (click)="openReserve()">
+            <ion-item button>
+              <ion-icon slot="start" icon="book"></ion-icon>
+              <ion-label>Reserve Table</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
           
         </ion-list>
       </ion-content>

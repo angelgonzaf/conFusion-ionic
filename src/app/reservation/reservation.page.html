@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Make Reservation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen padding>
+  <form [formGroup]="reservation" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label>No. of Guests</ion-label>
+      <ion-select formControlName="guests">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Smoking?</ion-label>
+      <ion-toggle formControlName="smoking" checked="false" slot="end" color="danger"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date and Time</ion-label>
+      <ion-datetime displayFormat="MM DD, YYY hh:mm" picker-format="MM DD, YYY hh:mm A" formControlName="dateTime"></ion-datetime>
+    </ion-item>
+    <ion-button expand="block" type="submit" color="primary" [disabled]="!reservation.valid">Reserve</ion-button>
+  </form>
+</ion-content>

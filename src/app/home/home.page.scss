@@ -1,3 +1,14 @@
 ion-list {
     --background: var(--ion-color-primary);
 }
+ion-fab-list{
+    ion-icon{
+        color: white;
+    }
+}
+.facebook{--background: #3b5998!important;}
+.google{--background: #dd4b39!important;}
+.youtube{--background: #ff4b39!important;}
+.twitter{--background: #55acee!important;}
+.linkedin{--background: #007bb6!important;}
+.mail{ --background:#512da8!important;}

@@ -2,7 +2,12 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-    </ion-buttons>
+    </ion-buttons> 
+    <ion-buttons slot="end">
+      <ion-button slot="end" (click)="showActionSheet()"><ion-icon name="ellipsis-horizontal"></ion-icon> </ion-button>
+    </ion-buttons> 
+    
+    
     <ion-title>
       Dish Details
     </ion-title>
@@ -57,4 +62,16 @@
     </ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" [hidden]="favorite">
+    <ion-fab-button color="danger" (click)="addToFavorites()">
+      <ion-icon name="heart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="favorite">
+    <ion-fab-button color="danger">
+      <ion-icon name="heart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
 </ion-content>

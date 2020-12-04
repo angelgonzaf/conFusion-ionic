@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ReservationPage } from './reservation/reservation.page';
 
 @Component({
   selector: 'app-root',
@@ -32,12 +33,19 @@ export class AppComponent implements OnInit {
       url: 'contact',
       icon: 'call'
     },
+    {
+      title: 'Favorites',
+      url: 'favorites',
+      icon: 'heart'
+    }
+  
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public modalController: ModalController,
   ) {
     this.initializeApp();
   }
@@ -51,5 +59,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     
+
   }
+  async openReserve(){
+    const modal = await this.modalController.create({
+      component: ReservationPage
+    });
+    await modal.present();
+  }
+  
 }

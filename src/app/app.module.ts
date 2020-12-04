@@ -16,6 +16,8 @@ import { DishService } from './services/dish.service';
 import { LeaderService } from './services/leader.service';
 import { ProcessHttpMsgService } from './services/process-http-msg.service';
 import { PromotionService } from './services/promotion.service';
+import { FavoriteService } from './services/favorite.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +26,9 @@ import { PromotionService } from './services/promotion.service';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,
@@ -33,6 +37,7 @@ import { PromotionService } from './services/promotion.service';
     LeaderService,
     ProcessHttpMsgService,
     PromotionService,
+    FavoriteService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: 'baseURL', useValue: baseURL}
   ],

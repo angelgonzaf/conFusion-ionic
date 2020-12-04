@@ -26,6 +26,18 @@ const routes: Routes = [
   {
     path: 'dishdetail/:id',
     loadChildren: () => import('./dishdetail/dishdetail.module').then( m => m.DishdetailPageModule)
+  },
+  {
+    path: 'favorites',
+    loadChildren: () => import('./favorites/favorites.module').then( m => m.FavoritesPageModule)
+  },
+  {
+    path: 'reservation',
+    loadChildren: () => import('./reservation/reservation.module').then( m => m.ReservationPageModule)
+  },
+  {
+    path: 'add-comment',
+    loadChildren: () => import('./add-comment/add-comment.module').then( m => m.AddCommentPageModule)
   }
 ];
 
