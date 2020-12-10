@@ -1,10 +1,24 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <ion-split-pane when="md" contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar class="background-dark">
+          <ion-title> <h6>Con Fusion</h6></ion-title>
+        </ion-toolbar>
+      </ion-header>
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>ConFusion</ion-list-header>
+          <ion-list-header text-wrap>
+            <ion-thumbnail item-left>
+              <img src="../assets/images/logo.png"/>
+            </ion-thumbnail>ConFusion</ion-list-header>
           <ion-note>hi@ionicframework.com</ion-note>
+          <ion-menu-toggle auto-hide="false" (click)="openLogin()">
+            <ion-item button>
+              <ion-icon slot="start" icon="log-in"></ion-icon>
+              <ion-label>Login</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerLink]="[p.url]">
@@ -19,7 +33,7 @@
               <ion-label>Reserve Table</ion-label>
             </ion-item>
           </ion-menu-toggle>
-          
+        
         </ion-list>
       </ion-content>
     </ion-menu>

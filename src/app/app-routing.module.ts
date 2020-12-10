@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'add-comment',
     loadChildren: () => import('./add-comment/add-comment.module').then( m => m.AddCommentPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
 ];
 

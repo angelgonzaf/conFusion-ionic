@@ -1,3 +1,16 @@
+$lt-gray: #ddd;
+$background-dark: #512DA8;
+$background-light: #9575CD;
+$background-pale: #D1C4E9;
+ion-toolbar{
+  color: white;
+}
+ion-list-header{
+  ion-thumbnail{
+    margin-right: 5%;
+  }
+  
+}
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
