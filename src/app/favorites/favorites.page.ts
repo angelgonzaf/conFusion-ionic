@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { FavoriteService } from '../services/favorite.service';
 import { IonItemSliding, ToastController, LoadingController, AlertController } from '@ionic/angular';
-import { baseURL } from '../shared/baseurl';
 
 @Component({
   selector: 'app-favorites',

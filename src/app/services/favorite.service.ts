@@ -4,6 +4,7 @@ import { Dish } from '../shared/dish';
 import { Observable, throwError } from 'rxjs';
 import { DishService } from '../services/dish.service';
 import { map } from 'rxjs/operators'
+import { Storage } from '@ionic/storage';
 
 
 @Injectable({
@@ -14,15 +15,25 @@ export class FavoriteService {
   favorites: Array<any>;
 
   constructor(public http: HttpClient,
-    private dishService: DishService) {
-    this.favorites=[]; 
+    private dishService: DishService,
+    private storage: Storage) {
+      console.log('Fav service initialized');
+      this.favorites=[];
+      
   }
 
   addFavorite(id: number): boolean {
     if(!this.isFavorite(id))
+    {
       this.favorites.push(id);
+      this.storage.remove('favorites');
+      this.storage.set('favorites', this.favorites);
       console.log('Favorites : ' + this.favorites);
+      console.log('Favs Added. ', this.storage.get('favorites'));
     return true;
+    }
+    else
+      return false;
   }
 
   isFavorite(id: number): boolean {
@@ -30,6 +41,18 @@ export class FavoriteService {
   }
 
   getFavorites(): Observable<Dish[]> {
+    this.storage.get('favorites').then(favorites=>{
+      if(favorites){
+        this.favorites=favorites;
+        console.log('Items on storage: '+ this.favorites);
+      }
+      else{
+        this.storage.set('favorites', this.favorites);
+        console.log('No items on storage')
+      }
+      
+    });
+
     return this.dishService.getDishes()
     .pipe(map(dishes => dishes.filter(dish => this.favorites.some(el => el === dish.id))));
   }
@@ -38,6 +61,8 @@ export class FavoriteService {
     let index = this.favorites.indexOf(id);
     if (index >= 0) {
       this.favorites.splice(index, 1);
+      this.storage.remove('favorites');
+      this.storage.set('favorites', this.favorites);
       return this.getFavorites();
     }
     else {
