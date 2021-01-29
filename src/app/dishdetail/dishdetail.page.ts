@@ -7,6 +7,7 @@ import { FavoriteService } from '../services/favorite.service';
 import { ToastController, ActionSheetController, ModalController } from '@ionic/angular';
 import { AddCommentPage } from '../add-comment/add-comment.page';
 import { Comment } from '../shared/comment';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.page.html',
@@ -26,7 +27,8 @@ export class DishdetailPage implements OnInit {
     private favoriteService: FavoriteService,
     private toastController: ToastController,
     private actionSheetCtrl: ActionSheetController,
-    private modalCtrl: ModalController) { }
+    private modalCtrl: ModalController,
+    private socialSharing: SocialSharing) { }
 
   ngOnInit() {
     this.route.params
@@ -75,7 +77,27 @@ export class DishdetailPage implements OnInit {
         {
           text: 'Cancel',
           role: 'cancel'
+        },
+        {
+          text: 'Share via Facebook',
+          handler: () => {
+            this.socialSharing.shareViaFacebook(
+              this.dish.name + ' -- ' + this.dish.description,
+              this.BaseURL + this.dish.image, '')
+              .then(() => console.log('Successfully shared to FB'))
+              .catch(()=> console.log('Failed to post to FB'));
+          }
+        },
+        {
+          text: 'Share via Twitter',
+          handler: () => {
+            this.socialSharing.shareViaTwitter(
+              this.dish.name + ' -- ' + this.dish.description,
+              this.BaseURL + this.dish.image, '')
+              .then(() => console.log('Successfully shared to Twitter'))
+              .catch(()=> console.log('Failed to post to Twitter'));
         }
+      }
       ]
     });
     await actionSheet.present();

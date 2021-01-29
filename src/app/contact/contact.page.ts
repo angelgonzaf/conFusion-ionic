@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactPage implements OnInit {
 
-  constructor() { }
+  constructor(private emailComposer: EmailComposer,
+    private callNumber: CallNumber) { }
 
   ngOnInit() {
   }
 
+    sendEmail() {
+      let email = {
+        to: 'confusion@food.net',
+        subject: '[ConFusion] Query',
+        body: 'Dear Sir/Madam:',
+        isHtml: true
+      };
+
+      this.emailComposer.open(email);
+    }
+    callRestaurant() {
+      this.callNumber.callNumber("101010101", true)
+        .then(res=> console.log('Launched dialer', res))
+        .catch(err=> console.log('Error launching dialer', err));
+    }
+      
+    
 }

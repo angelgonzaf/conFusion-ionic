@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { User } from '../shared/user';
+import { RegisterPage } from '../register/register.page';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginPage implements OnInit {
   user: User= {username: '', password: ''};
   constructor(private formBuild: FormBuilder,
     public modalCtrl: ModalController,
+    public registerModal: ModalController,
     private storage: Storage) {
       this.storage.get('user').then(user => {
         if(user){
@@ -35,7 +37,7 @@ export class LoginPage implements OnInit {
         password: ['', Validators.required],
         remember: true
       });
-     }
+    }
 
   ngOnInit() {
   }
@@ -57,4 +59,20 @@ export class LoginPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
+  async openRegister(){
+    const modal = await this.registerModal.create({
+      component: RegisterPage
+    });
+   
+    modal.onDidDismiss().then((data)=>{
+      if(data.data){
+        console.log(data);
+        this.modalCtrl.dismiss(null, null, 'loginModal');
+      }
+      else
+      console.log('Register dismissed');
+    });
+  await modal.present();
+
+  } 
 }

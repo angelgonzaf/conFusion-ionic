@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { DishService } from '../services/dish.service';
 import { map } from 'rxjs/operators'
 import { Storage } from '@ionic/storage';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 @Injectable({
@@ -16,7 +17,8 @@ export class FavoriteService {
 
   constructor(public http: HttpClient,
     private dishService: DishService,
-    private storage: Storage) {
+    private storage: Storage,
+    private localNotifications: LocalNotifications) {
       console.log('Fav service initialized');
       this.favorites=[];
       
@@ -30,6 +32,10 @@ export class FavoriteService {
       this.storage.set('favorites', this.favorites);
       console.log('Favorites : ' + this.favorites);
       console.log('Favs Added. ', this.storage.get('favorites'));
+      this.localNotifications.schedule({
+        id: id,
+        text: 'Dish '+ id + ' added as a favorite!'
+      });
     return true;
     }
     else
