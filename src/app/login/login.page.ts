@@ -13,7 +13,7 @@ import { RegisterPage } from '../register/register.page';
 export class LoginPage implements OnInit {
 
   loginForm: FormGroup;
-  user: User= {username: '', password: ''};
+  user: User= {username: '', password: '', remember: false};
   constructor(private formBuild: FormBuilder,
     public modalCtrl: ModalController,
     public registerModal: ModalController,
